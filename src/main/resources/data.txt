@@ -1,0 +1,74 @@
+CREATE SCHEMA `patients_repo` ;
+USE patients_repo;
+
+CREATE TABLE `users` (
+  `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(50) ,
+  `last_name` VARCHAR(50) ,
+  `email_id` VARCHAR(128),
+  `password` VARCHAR(128),
+  `created_date` timestamp default now(),
+  `modified_date` timestamp default now() on update now(),
+  CONSTRAINT email_id_uc UNIQUE(`email_id`),
+  PRIMARY KEY (`user_id`)
+) ENGINE=INNODB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+
+INSERT INTO `patients_repo`.`users` (`first_name`, `last_name`, `email_id`, `password`)
+VALUES ('system', 'system', 'system@sagarsoft.in', 'system');
+
+CREATE TABLE `doctors` (
+  `doctor_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) ,
+  `email_id` VARCHAR(128),
+  `specialist` VARCHAR(128),
+  PRIMARY KEY (`doctor_id`),
+  UNIQUE KEY `doctor_id_UNIQUE` (`doctor_id`)
+) ENGINE=INNODB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+
+INSERT INTO `patients_repo`.`doctors` (`name`, `email_id`, `specialist`) VALUES ('Sudhakar Reddy', 'sudhakar@gmail.com', 'Childrens Specialist');
+INSERT INTO `patients_repo`.`doctors` (`name`, `email_id`, `specialist`) VALUES ('Shastry', 'shastry@gmail.com', 'Diabetaligist');
+INSERT INTO `patients_repo`.`doctors` (`name`, `email_id`, `specialist`) VALUES ('Ramulu', 'ramulu@gmail.com', 'Neuralgist');
+INSERT INTO `patients_repo`.`doctors` (`name`, `email_id`, `specialist`) VALUES ('Anjali', 'anjali@gmail.com', 'Eye specialist');
+
+CREATE TABLE `illnes_table` (
+  `illness_type` VARCHAR(50) NOT NULL PRIMARY KEY,
+  `description` VARCHAR(50),
+  `prevention` VARCHAR(256)
+) ENGINE=INNODB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE medicine_table (
+`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(50),
+`illness_type` VARCHAR(50),
+`prevention` VARCHAR(256)
+)ENGINE=INNODB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+
+INSERT INTO `patients_repo`.`illnes_table` (`illness_type`, `description`,`prevention`) VALUES ('fever', 'fever','Be vigilant about hand washing in a bome');
+INSERT INTO `patients_repo`.`illnes_table` (`illness_type`, `description`,`prevention`) VALUES ('head ache', 'head ache','Try stress reduction techniques such as yoga, reduce caffeine');
+INSERT INTO `patients_repo`.`illnes_table` (`illness_type`, `description`,`prevention`) VALUES ('stomach ache', 'stomach ache', 'Avoid junk food, drink plenty of water');
+INSERT INTO `patients_repo`.`illnes_table` (`illness_type`, `description`,`prevention`) VALUES ('knee pain', 'knee pain','Excercise regularly and healthy well balanced diet');
+INSERT INTO `patients_repo`.`illnes_table` (`illness_type`, `description`,`prevention`) VALUES ('back pain', 'back pain','Sitting in proper position');
+
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`,`prevention`) VALUES ('crocine', 'fever', 'Be vigilant about hand washing in a bome');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`,`prevention`) VALUES ('paracetamol', 'fever', 'Try stress reduction techniques such as yoga, reduce caffeine');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`,`prevention`) VALUES ('dolo 650', 'fever','some test');
+
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('crocine', 'head ache');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('paracetamol', 'head ache');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('dolo', 'head ache');
+
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('crocine', 'stomach ache');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('paracetamol', 'stomach ache');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('dolo', 'stomach ache');
+
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('crocine', 'knee pain');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('paracetamol', 'knee pain');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('dolo', 'knee pain');
+
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('crocine', 'back pain');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('paracetamol', 'back pain');
+INSERT INTO `patients_repo`.`medicine_table` (`name`, `illness_type`) VALUES ('dolo', 'back pain');
+
+
+
